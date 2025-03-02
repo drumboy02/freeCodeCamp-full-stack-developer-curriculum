@@ -1,0 +1,110 @@
+** start of undefined **
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown to HTML Converter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Markdown to HTML Converter</h1>
+    <div id="container">
+        <div class="container">
+            <h2>Markdown Input:</h2>
+            <textarea id="markdown-input" placeholder="Enter your markdown here..."></textarea>
+        </div>
+        <div class="container">
+            <h2>Raw HTML Output:</h2>
+            <div id="html-output"></div>
+        </div>
+        <div class="container">
+            <h2>HTML Preview:</h2>
+            <div id="preview"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+const markdownInput = document.getElementById("markdown-input");
+const htmlOutput = document.getElementById("html-output");
+const htmlPreview = document.getElementById("preview");
+
+markdownInput.addEventListener('input', convertMarkdown);
+
+const h1 = /^[\s]*#[\s](.+$)/gm;
+const h2 = /^[\s]*##[\s](.+$)/gm;
+const h3 = /^[\s]*###[\s](.+$)/gm;
+const strong = /((?:\*|_){2})(.*?)\1/g;
+const em = /(\*|_)(.*?)\1/g;
+const img = /!\[\s*(.*?)\s*\]\(\s*(.*?)\s*\)/g;
+const a = /\[(.*?)\]\(\s*(.*?)\s*\)/g
+const blockquote = /^[\s]*> ([^\n]+?)$/gm;
+
+function convertMarkdown() {
+  let userInput = markdownInput.value;
+  let html = userInput;
+
+  html = html.replace(h1, (match, text) => `<h1>${text}</h1>`);
+  html = html.replace(h2, (match, text) => `<h2>${text}</h2>`);
+  html = html.replace(h3, (match, text) => `<h3>${text}</h3>`);
+  html = html.replace(strong, (match, _, text) => `<strong>${text}</strong>`);
+  html = html.replace(em, (match, _, text) => `<em>${text}</em>`);
+  html = html.replace(img, (match, alt, src) => `<img src="${src}" alt="${alt}">`);
+  html = html.replace(a, (match, text, url) => `<a href=${url}>${text}</a>`);
+  html = html.replace(blockquote, (match, text) => `<blockquote>${text}</blockquote>`);
+
+  htmlOutput.textContent = html;
+  htmlPreview.innerHTML = html;
+
+  return html;
+}
+
+** end of undefined **
+
+** start of undefined **
+
+* {
+     box-sizing: border-box;
+}
+ body {
+     font-family: Arial, sans-serif;
+     padding: 20px;
+}
+ #markdown-input {
+     width: 100%;
+     height: 100px;
+}
+ #html-output, #preview {
+     height: 100px;
+     display: inline-block;
+     width: 100%;
+     border: 1px solid #ccc;
+     padding: 10px;
+     margin: auto;
+     white-space: pre-wrap;
+     background-color: #f9f9f9;
+}
+ @media (min-width: 600px) {
+     #markdown-input, #html-output, #preview {
+         height: 200px;
+         margin: 0;
+    }
+     #container {
+         display: flex;
+         justify-content: space-evenly;
+         gap: 10px;
+    }
+}
+
+** end of undefined **
+

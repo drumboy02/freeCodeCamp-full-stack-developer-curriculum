@@ -1,0 +1,90 @@
+** start of undefined **
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Business Card</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="business-card">
+        <img class="profile-image" src="https://upload.wikimedia.org/wikipedia/commons/6/65/MOS_BLT_burger.jpg" alt="Bacon Lettuce Tomato Sandwich">
+        <p class="full-name">BLT</p>
+        <p class="designation">Web Developer</p>
+        <p class="company">@freeCodeCamp</p><hr>
+        <p>drumboy02@gmail.com</p>
+        <p>555-5555</p>
+        <a href="https://example.com">Portfolio</a><hr>
+        <div class="social-media">
+            <h2>Connect with me</h2>
+            <a href="https://twitter.com">Twitter</a>
+            <a href="https://linkedin.com">LinkedIn</a>
+            <a href="https://github.com">GitHub</a>
+        </div>
+    </div>
+</body>
+
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+body {
+  background-color: rosybrown;
+  font-family: Arial, sans-serif;
+}
+
+p {
+  margin: 5px 0;
+}
+
+a {
+  text-decoration: none;
+  margin: 0 4px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.business-card {
+  width: 300px;
+  background-color: #af9;
+  padding: 20px;
+  margin: 100px auto 0;
+  text-align: center;
+  font-size: 16px;
+  border: 2px solid #333;
+}
+
+img {
+  max-width: 40%;
+  border: 1px solid #333;
+}
+
+hr {
+  border: none;
+  border-top: 1px dashed slategray;
+}
+
+.full-name {
+  color: #333;
+}
+
+.designation {
+  color: #777;
+}
+
+.company {
+  color: #aaa;
+}
+
+.social-media a {
+  color: #a33;
+}
+
+** end of undefined **
+

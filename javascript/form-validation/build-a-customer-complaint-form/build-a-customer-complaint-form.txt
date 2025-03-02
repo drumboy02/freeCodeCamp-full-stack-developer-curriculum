@@ -1,0 +1,312 @@
+** start of undefined **
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Customer Complaint Form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Complaint Form</h1>
+    <form id="form">
+        <fieldset id="personal-info">
+            <div>
+                <label for="full-name">Full Name:</label>
+                <input type="text" id="full-name" name="full-name" placeholder="John Doe">
+            </div>
+
+            <div>
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="example@domain.com">
+            </div>
+        </fieldset>
+        <hr>
+        <fieldset id="product-info">
+            <div>
+                <label for="order-no">Order No:</label>
+                <input type="text" id="order-no" name="order-no" placeholder="2024######">
+            </div>
+            <div>
+                <label for="product-code">Product Code:</label>
+                <input type="text" id="product-code" name="product-code" placeholder="XX##-X###-XX#">
+            </div>
+            <div>
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity" min="1">
+            </div>
+        </fieldset>
+
+        <fieldset id="complaints-group">
+            <legend>Complaint Reason:</legend>
+            <div>
+                <input type="checkbox" id="damaged-product" name="complaint" value="damaged-product">
+                <label for="damaged-product">Damaged Product</label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="nonconforming-product" name="complaint" value="nonconforming-product">
+                <label for="nonconforming-product">Nonconforming Product</label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="delayed-dispatch" name="complaint" value="delayed-dispatch">
+                <label for="delayed-dispatch">Delayed Dispatch</label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="other-complaint" name="complaint" value="other">
+                <label for="other-complaint">Other</label>
+            </div>
+        </fieldset>
+
+        <div id="complaint-description-container">
+            <legend>Description of Complaint Reason</legend>
+            <textarea placeholder="Describe the reason of your complaint in at least 20 characters"
+                name="complaint-textarea" id="complaint-description"></textarea>
+        </div>
+
+        <fieldset id="solutions-group">
+            <legend>Desired Solution</legend>
+            <input type="radio" name="solutions" id="refund" value="refund">
+            <label for="refund">Refund</label>
+
+            <input type="radio" name="solutions" id="exchange" value="exchange">
+            <label for="exchange">Exchange</label>
+
+            <input type="radio" name="solutions" id="other-solution" value="other">
+            <label for="other-solution">Other</label>
+        </fieldset>
+
+        <div id="solution-description-container">
+            <legend>Description of Desired Solution</legend>
+            <textarea placeholder="Describe the desired solution to your issue in at least 20 characters"
+                name="solution-textarea" id="solution-description"></textarea>
+        </div>
+        <div id="btn-container">
+            <button type="submit" id="submit-btn">Submit</button>
+            <span id="message-box"></span>
+        </div>
+
+    </form>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+const fullName = document.getElementById("full-name");
+const email = document.getElementById("email");
+
+const orderNo = document.getElementById("order-no");
+const productCode = document.getElementById("product-code");
+const quantity = document.getElementById("quantity");
+
+const complaintsGroup = document.getElementById("complaints-group");
+const complaintDescription = document.getElementById("complaint-description");
+
+const solutionsGroup = document.getElementById("solutions-group");
+const solutionDescription = document.getElementById("solution-description");
+
+const submitBtn = document.getElementById("submit-btn")
+const messageBox = document.getElementById("message-box");
+const form = document.getElementById("form");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  isValid(validateForm());
+});
+
+submitBtn.addEventListener("click", () => {
+  // messageBox.textContent = "Button clicked";
+});
+/*
+document.getElementById("complaint-description-container").style.display = "none";
+document.getElementById("solution-description-container").style.display = "none";
+*/
+fullName.addEventListener("change", () => {
+  validateForm()["full-name"] ?
+  fullName.style.borderColor = "green" : 
+  fullName.style.borderColor = "red";
+});
+
+email.addEventListener("change", () => {
+  validateForm()["email"] ?
+  email.style.borderColor = "green" :
+  email.style.borderColor = "red";
+});
+
+orderNo.addEventListener("change", () => {
+  validateForm()["order-no"] ?
+  orderNo.style.borderColor = "green" :
+  orderNo.style.borderColor = "red";
+});
+
+productCode.addEventListener("change", () => {
+  validateForm()["product-code"] ?
+  productCode.style.borderColor = "green" :
+  productCode.style.borderColor = "red";
+});
+
+quantity.addEventListener("change", () => {
+  validateForm()["quantity"] ?
+  quantity.style.borderColor = "green" :
+  quantity.style.borderColor = "red";
+});
+
+complaintsGroup.addEventListener("change", () => {
+  validateForm()["complaints-group"] ?
+  complaintsGroup.style.borderColor = "green" :
+  complaintsGroup.style.borderColor = "red";
+});
+
+complaintDescription.addEventListener("change", () => {
+  validateForm()["complaint-description"] ?
+  complaintDescription.style.borderColor = "green" :
+  complaintDescription.style.borderColor = "red";
+});
+
+solutionsGroup.addEventListener("change", () => {
+  validateForm()["solutions-group"] ?
+  solutionsGroup.style.borderColor = "green" :
+  solutionsGroup.style.borderColor = "red";
+});
+
+solutionDescription.addEventListener("change", () => {
+  validateForm()["solution-description"] ?
+  solutionDescription.style.borderColor = "green" :
+  solutionDescription.style.borderColor = "red";
+});
+
+function validateForm() {
+  const obj = new Object();
+  obj["full-name"] = fullName.value !== '';
+  obj["email"] = /^.+@.+(.com|.net)$/.test(email.value);
+  obj["order-no"] = /^2024\d{6}$/.test(orderNo.value);
+  obj["product-code"] = /^[a-zA-Z]{2}\d{2}-[a-zA-z]\d{3}-[a-zA-Z]{2}\d$/.test(productCode.value);
+  obj["quantity"] = quantity.value > 0;
+  obj["complaints-group"] = (() => {
+    const fieldset = Object.values(complaintsGroup.children);
+    for (let el of fieldset) {
+      if (Object.values(el.children).length) {
+        const checkbox = Object.values(el.children)[0];
+        if (checkbox.checked) return true;
+      }
+    }    
+    return false
+  })();
+  obj["complaint-description"] = (() => {
+    return document.getElementById("other-complaint").checked ?
+    complaintDescription.value.length >= 20 :
+    false;
+  })();
+  obj["solutions-group"] = (() => {
+    const fieldset = Object.values(solutionsGroup.children);
+    for (let el of fieldset) {
+      if (el.type === "radio") {
+        if (el.checked) return true;
+      }
+    }
+    return false;
+  })();
+  obj["solution-description"] = (() => {
+    return document.getElementById("other-solution").checked ?
+    solutionDescription.value.length >= 20 :
+    false;
+  })();
+
+  return obj;
+}
+
+function isValid(validateFormObj) {
+  let entries = Object.entries(validateFormObj);
+  let valCheck = true;
+  for (let i = 0; i < entries.length; i++) {
+    let id = entries[i][0];
+    if (id === "complaint-description" || id === "solution-description") {
+      let checkbox = document.getElementById(`other-${id.split("-")[0]}`);
+      let el = document.getElementById(id);
+      if (!validateForm()[id] && checkbox.checked) {
+        el.style.borderColor = "red";
+        valCheck = false;
+        continue;
+      } else {
+        el.style.borderColor = "initial";
+        continue;
+      }
+    }
+    if (entries[i].includes(false)) {
+      let el = document.getElementById(id);
+      el.style.borderColor = "red";
+      valCheck = false;
+    };
+  }
+
+  for (let k in validateFormObj) {
+    console.log(k, validateFormObj[k]);
+  }
+
+  return valCheck;
+}
+
+
+** end of undefined **
+
+** start of undefined **
+
+* {
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+}
+
+#form {
+    max-width: 70%;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    padding: 10px;
+}
+
+input {
+    border-color: rgb(118, 118, 118);
+}
+
+#personal-info input, #product-info input {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+
+fieldset {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-color: rgb(118, 118, 118);
+}
+
+textarea {
+    width: 100%;
+    border-color: rgb(118, 118, 118);
+}
+
+#btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#submit-btn, #clear-btn {
+    margin: 10px 15px 0;
+}
+
+** end of undefined **
+

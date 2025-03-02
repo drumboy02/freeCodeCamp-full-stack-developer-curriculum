@@ -1,0 +1,184 @@
+** start of undefined **
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Availability Table</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr class="sharp">
+                <th class="time" rowspan="2">12 PM</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednsday</th>
+            </tr>
+            <tr class="half">
+                <td class="available-2"></td>
+                <td class="available-0"></td>
+                <td class="available-5"></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="sharp">
+                <th class="time" rowspan="2">1 PM</th>
+                <td class="available-4"></td>
+                <td class="available-2"></td>
+                <td class="available-1"></td>
+            </tr>
+            <tr class="half">
+                <td class="available-0"></td>
+                <td class="available-5"></td>
+                <td class="available-3"></td>
+            </tr>
+            <tr class="sharp">
+                <th class="time" rowspan="2">2 PM</th>
+                <td class="available-3"></td>
+                <td class="available-1"></td>
+                <td class="available-0"></td>
+            </tr>
+            <tr class="half">
+                <td class="available-2"></td>
+                <td class="available-5"></td>
+                <td class="available-4"></td>
+            </tr>
+            <tr class="sharp">
+                <th class="time" rowspan="2">3 PM</th>
+                <td class="available-2"></td>
+                <td class="available-0"></td>
+                <td class="available-3"></td>
+            </tr>
+            <tr class="half">
+                <td class="available-1"></td>
+                <td class="available-1"></td>
+                <td class="available-5"></td>
+            </tr>
+            <tr class="sharp">
+                <th class="time" rowspan="2">4 PM</th>
+                <td class="available-4"></td>
+                <td class="available-3"></td>
+                <td class="available-4"></td>
+            </tr>
+            <tr class="half">
+                <td class="available-0"></td>
+                <td class="available-0"></td>
+                <td class="available-2"></td>
+            </tr>
+            <tr class="sharp">
+                <th class="time" rowspan="2">5 PM</th>
+                <td class="available-4"></td>
+                <td class="available-3"></td>
+                <td class="available-1"></td>
+            </tr>
+            <tr class="half">
+                <td class="available-3"></td>
+                <td class="available-0"></td>
+                <td class="available-2"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div id="legend">
+        <span>Availability</span>
+        <div id="legend-gradient"></div>
+    </div>
+</body>
+
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+:root {
+  --bg-color: rgba(0,127,255, 0.5);
+  --color0: hsl(30, 100%, 100%); 
+  --color1: hsl(30, 100%, 90%);
+  --color2: hsl(30, 100%, 80%);
+  --color3: hsl(30, 100%, 70%);
+  --color4: hsl(30, 100%, 60%);
+  --color5: hsl(30, 100%, 50%);
+  --solid-border: 1px solid #222;
+  --dashed-border: 1px dashed #222;
+}
+
+body {
+  background-color: var(--bg-color);
+}
+
+table {
+  border-collapse: collapse;
+  text-align: center;
+  margin: 55px auto;
+}
+
+table th:first-child {
+  text-align: right;
+  padding: 8px;
+}
+
+table th:nth-child(n+2) {
+  background-color: #aaa;
+  border: 1px solid;
+}
+
+td {
+  padding: 8px;
+  width: 80px;
+  border-left: 1px solid #222;
+  border-right: 1px solid #222;
+}
+
+.available-0 {
+  background-color: var(--color0);
+}
+
+.available-1 {
+  background-color: var(--color1);
+}
+
+.available-2 {
+  background-color: var(--color2);
+}
+
+.available-3 {
+  background-color: var(--color3);
+}
+
+.available-4 {
+  background-color: var(--color4);
+}
+
+.available-5 {
+  background-color: var(--color5);
+}
+
+.sharp td {
+  border-bottom: var(--solid-border);
+}
+
+.half td {
+  border-bottom: var(--dashed-border);
+}
+
+#legend {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+#legend-gradient {
+  background-image: linear-gradient(to right, var(--color0) 0% 17%, var(--color1) 17% 34%, var(--color2) 34% 50%, var(--color3) 50% 67%, var(--color4) 67% 83%, var(--color5) 83% 100%);
+  height: 20px;
+  width: 100px;
+}
+
+** end of undefined **
+

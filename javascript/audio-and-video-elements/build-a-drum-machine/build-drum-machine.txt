@@ -1,0 +1,156 @@
+** start of undefined **
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Drum Machine</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div id="drum-machine">
+      <div id="pad-bank">
+        <button type="button" class="drum-pad" id="Heater-1">
+          Q
+          <audio src="https://cdn.freecodecamp.org/curriculum/drum/Heater-1.mp3" id="Q" class="clip">
+          </audio>
+        </button>
+        <button type="button" class="drum-pad" id="Heater-2">
+          W
+          <audio src="https://cdn.freecodecamp.org/curriculum/drum/Heater-2.mp3" id="W" class="clip">
+          </audio>
+        </button>
+        <button type="button" class="drum-pad" id="Heater-3">
+          E
+          <audio src="https://cdn.freecodecamp.org/curriculum/drum/Heater-3.mp3" id="E" class="clip">
+          </audio>
+        </button>
+        <button type="button" class="drum-pad" id="Heater-4_1">
+          A
+          <audio src="https://cdn.freecodecamp.org/curriculum/drum/Heater-4_1.mp3" id="A" class="clip">
+          </audio>
+        </button>
+        <button type="button" class="drum-pad" id="Heater-6">
+          S
+          <audio src="https://cdn.freecodecamp.org/curriculum/drum/Heater-6.mp3" id="S" class="clip">
+          </audio>
+        </button>
+        <button type="button" class="drum-pad" id="Dsc_Oh">
+          D
+          <audio src="https://cdn.freecodecamp.org/curriculum/drum/Dsc_Oh.mp3" id="D" class="clip">
+          </audio>
+        </button>
+        <button type="button" class="drum-pad" id="Kick_n_Hat">
+          Z
+          <audio src="https://cdn.freecodecamp.org/curriculum/drum/Kick_n_Hat.mp3" id="Z" class="clip">
+          </audio>
+        </button>
+        <button type="button" class="drum-pad" id="RP4_KICK_1">
+          X
+          <audio src="https://cdn.freecodecamp.org/curriculum/drum/RP4_KICK_1.mp3" id="X" class="clip">
+          </audio>
+        </button>
+        <button type="button" class="drum-pad" id="Cev_H2">
+          C
+          <audio src="https://cdn.freecodecamp.org/curriculum/drum/Cev_H2.mp3" id="C" class="clip">
+          </audio>
+        </button>
+      </div>
+      <p id="display"></p>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #444;
+  color: #fff;
+  font-family: monospace;
+  display: flex;
+  justify-content: center;
+}
+
+#drum-machine {
+  background-color: #222;
+  border: 2px solid;
+  border-radius: 8px;
+  margin: 2rem;
+}
+
+#pad-bank {
+  margin: 1.25rem;
+  padding: 4px;
+  border: 1px solid;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4px;
+}
+
+.drum-pad {
+  padding: 2rem;
+  background-color: #222;
+  color: #fff;
+}
+
+#display {
+  border: 1px solid #fff;
+  margin: 1.25rem;
+  height: 2.5rem;
+  width: 290px;
+  font-size: 2rem;
+  background: #000;
+  color: #f00;
+  text-align: center;
+}
+
+** end of undefined **
+
+** start of undefined **
+
+const drumMachine = document.getElementById("drum-machine");
+const padBank = document.getElementById("pad-bank");
+const display = document.getElementById("display");
+const pads = padBank.querySelectorAll(".drum-pad");
+
+const keyMap = {};
+
+pads.forEach(pad => {
+  const audio = pad.querySelector(".clip");
+  const clip = audio.src.split("/")[5];
+  keyMap[audio.id] = document.getElementById(audio.id);
+
+  pad.addEventListener("click", () => {
+    pad.style.color = "#f00";
+    setTimeout(() => pad.style.color = "#fff", "250");
+    display.textContent = clip;
+    audio.play();
+  });
+});
+
+document.addEventListener("keydown", (e) => {
+  const key = e.key.toUpperCase();
+  if (keyMap[key]) {
+    const audio = keyMap[key];
+    const clip = audio.src.split("/")[5];
+    const pad = document.querySelector(`#${clip.split(".")[0]}`);
+    pad.style.color = "#f00";
+    setTimeout(() => pad.style.color = "#fff", 250);
+    display.textContent = clip;
+    audio.play();
+  }
+});
+
+
+** end of undefined **
+

@@ -1,0 +1,29 @@
+body {
+  background-color: #ccc;
+  padding: 50px 0;
+  margin: 0 auto;
+
+  width: 76vw;
+  min-height: calc(100vh - 100px);
+  text-align: center;
+}
+
+img {
+  border: 2px solid;
+}
+
+hr {
+  width: 100%;
+}
+
+main {
+  display: flex;
+}
+
+section {
+  width: 50%;
+}
+
+ul {
+  list-style-position: inside;
+}

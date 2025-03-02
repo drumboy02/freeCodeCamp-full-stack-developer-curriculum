@@ -1,0 +1,72 @@
+.container {
+  border: 2px solid;
+  padding: 2rem;
+  width: 80vw;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+input, 
+select, 
+fieldset, 
+textarea {
+  margin: 0.5rem;
+}
+
+form > label,
+form > input,
+select,
+fieldset,
+textarea {
+  display: block;
+  width: 98%;
+}
+
+input, select, fieldset, textarea {
+  padding: 0.2rem;
+  margin-bottom: 1.2rem;
+}
+
+fieldset {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border: 2px dotted #0f0;
+}
+
+input:invalid, select:invalid, textarea:invalid {
+  border: 2px solid #f00;
+}
+
+input:valid, select:valid, textarea:valid {
+  border: 2px solid #0f0;
+}
+
+button:hover {
+  background-color: #8f4;
+}
+
+.radio-group:has(input[type="radio"]:checked) {
+  border-color: #0f0;
+  background-color: rgb(0, 0, 0, 0.4);
+  box-shadow: -2px 3px 2px #666;
+}
+
+.radio-group input[type="radio"]:checked + label {
+  color: #0f0;
+}
+
+input:nth-child(even) {
+  appearance: none;
+  border-radius: 5px;
+}
+
+input[type="radio"]:checked {
+  appearance: none;
+  border-radius: 50%;
+  background: #28f;
+}

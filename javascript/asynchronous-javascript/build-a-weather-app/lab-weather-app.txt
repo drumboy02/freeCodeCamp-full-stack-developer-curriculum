@@ -1,0 +1,193 @@
+** start of undefined **
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body>
+    <div id="user-inputs">
+      <button id="get-forecast">Get Forecast</button>
+      <select>
+        <option value=""></option>
+        <option value="new york">New York</option>
+        <option value="los angeles">Los Angeles</option>
+        <option value="chicago">Chicago</option>
+        <option value="paris">Paris</option>
+        <option value="tokyo">Tokyo</option>
+        <option value="london">London</option>
+      </select>
+    </div>
+    <div id="forecast">
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+const getForecastBtn = document.getElementById("get-forecast");
+const select = document.querySelector("select");
+const forecast = document.getElementById("forecast");
+
+getForecastBtn.addEventListener("click", () => {
+  forecast.innerHTML = '';
+
+  const weatherIcon = document.createElement("img");
+  weatherIcon.setAttribute("id", "weather-icon");
+
+  const mainTemperature = document.createElement("div");
+  mainTemperature.setAttribute("id", "main-temperature");
+
+  const feelsLike = document.createElement("div");
+  feelsLike.setAttribute("id", "feels-like");
+
+  const humidity = document.createElement("div");
+  humidity.setAttribute("id", "humidity");
+
+  const wind = document.createElement("div");
+  wind.setAttribute("id", "wind");
+
+  const windGust = document.createElement("div");
+  windGust.setAttribute("id", "wind-gust");
+
+  const weatherMain = document.createElement("div");
+  weatherMain.setAttribute("id", "weather-main");
+
+  const location = document.createElement("div");
+  location.setAttribute("id", "location");
+
+  const city = select.value;
+  if (!city) return;
+
+  forecast.append(location, mainTemperature, weatherMain, weatherIcon, feelsLike, humidity, wind, windGust);
+  showWeather(city)
+});
+
+const getWeather = async (city) => {
+  const infoFrom = `https://weather-proxy.freecodecamp.rocks/api/city/${city}`;
+  let data;
+
+  try {
+    data = await fetch(infoFrom)
+      .then(res => res.json());
+  } catch (err) {
+    console.log(err);
+  }
+
+  return data;
+}
+
+const showWeather = async (city) => {
+  // call getWeather for city. if error, alert
+  const data = await getWeather(city);
+
+  if (data.error) {
+    forecast.innerHTML = '';
+    return alert("Something went wrong, please try again later");
+  }
+
+  // else display weather data. (undefined = N/A)
+  forecast.querySelector("#weather-icon").setAttribute("src", data.weather[0].icon);
+  forecast.querySelector("#main-temperature").textContent = data.main.temp + "°C";
+  forecast.querySelector("#feels-like").textContent = "Feels Like: " + data.main.feels_like + "°C";
+  forecast.querySelector("#humidity").textContent = "Humidity: " + data.main.humidity + "%";
+  forecast.querySelector("#wind").textContent = "Wind: " + data.wind.speed + " m/s";
+  forecast.querySelector("#wind-gust").textContent = data.wind.gust ? "Gusts: " + data.wind.gust + " m/s" : "Gusts: N/A";
+  forecast.querySelector("#weather-main").textContent = data.weather[0].main;
+  forecast.querySelector("#location").textContent = data.name;
+}
+
+
+** end of undefined **
+
+** start of undefined **
+
+* {
+  font-size: 16px;
+}
+
+body {
+  background: #eee;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#user-inputs {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+button {
+  color: #f00;
+}
+
+#forecast {
+  margin: 1rem;
+  display: grid;
+  grid-template-areas: 
+  "location location"
+  "maintemp maintemp"
+  "icon weathermain"
+  "humidity feelslike"
+  "wind gust";
+  gap: 10px 1rem;
+  width: 400px;
+}
+
+#forecast * {
+  font-size: 20px;
+}
+
+#location {
+  grid-area: location;
+  place-self: center;
+  color: #00f;
+  font-weight: bold;
+}
+
+#main-temperature {
+  grid-area: maintemp;
+  place-self: center;
+}
+
+#weather-main {
+  grid-area: weathermain;
+  align-self: center;
+}
+
+#weather-icon {
+  grid-area: icon;
+  place-self: end;
+}
+
+#humidity {
+  grid-area: humidity;
+  place-self: end;
+}
+
+#feels-like {
+  grid-area: feelslike;
+}
+
+#wind {
+  grid-area: wind;
+  place-self: end;
+}
+
+#wind-gust {
+  grid-area: gust;
+}
+
+** end of undefined **
+

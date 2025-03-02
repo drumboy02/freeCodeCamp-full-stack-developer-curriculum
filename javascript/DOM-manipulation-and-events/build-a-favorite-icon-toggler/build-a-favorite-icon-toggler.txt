@@ -1,0 +1,89 @@
+** start of undefined **
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <ul class="item-list">
+        <li>
+            Hear Nothing<span class="favorite-icon">&#9825;</span>
+        </li>
+        <li>
+            See Nothing<span class="favorite-icon">&#9825;</span>
+        </li>
+        <li>
+            Say Nothing<span class="favorite-icon">&#9825;</span>
+        </li>
+    </ul>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: hsl(0, 75%, 75%);
+  color: #fff;
+}
+
+.item-list {
+  background-color: hsl(0, 55%, 77%);
+  border: 2px solid #666;
+  border-radius: 8px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 200px;
+  width: 150px;
+  list-style: none;
+}
+
+li {
+  padding: 0.75rem;
+}
+
+span {
+  padding-left: 8px;
+}
+
+.filled {
+  color: hsl(0, 100%, 50%);
+}
+
+** end of undefined **
+
+** start of undefined **
+
+const hearts = document.querySelectorAll('.favorite-icon');
+
+hearts.forEach(heart => {
+  heart.addEventListener('click', () => {
+    if (heart.className.includes("filled")) {
+      heart.classList.remove("filled");
+      heart.innerHTML = "&#9825;";
+    } else {
+      heart.classList.add("filled");
+      heart.innerHTML = "&#10084;";
+    }
+  });
+});
+
+** end of undefined **
+

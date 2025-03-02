@@ -1,0 +1,91 @@
+** start of undefined **
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <article class="newspaper">
+      <h1 class="name">The Galactic Gazette</h1>
+      <span class="date">January 31, 2025</span>
+      <h2 class="headline">Intergalactic Surprise: Aliens Invade Earth’s Coffee Shops</h2>
+      <h3 class="sub-headline">Space Beans and Martian Mochas Cause Stir</h3>
+      <span class="author">By Zog the Interstellar</span>
+      <p class="text">On a typical Tuesday morning, Earth's coffee shops were unexpectedly invaded by aliens. From New York's bustling streets to Paris's quaint cafes, extraterrestrial beings descended upon Earth, eager to sample the galaxy's finest coffee. Martians, sporting trendy space helmets and neon jumpsuits, queued up for their morning lattes. "We come in peace," declared Zorg, leader of the Martian delegation, adjusting his holographic scarf. “But we couldn’t resist the aroma of Earth’s renowned coffee.”</p>
+      <p class="text">Using their advanced time-travel technology, the Martians opened a chain of coffee shops named "Space Beans," where time-traveling baristas serve coffee brewed from beans cultivated in the year 3025. "It’s out of this world," exclaimed one delighted customer. As the alien caffeine craze spreads, Earthlings adjust to their new intergalactic neighbors. With time-travel and aliens now part of everyday life, mornings on Earth will never be the same.</p>
+    </article>
+  </body>
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+html {
+  font-size: 24px;
+}
+
+body {
+  background-color: hsl(120, 60%, 90%);
+}
+
+.newspaper {
+  font-size: 16px;
+  font-family: Open Sans, sans-serif;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  background-color: #fff;
+  max-width: 800px;
+  min-width: 300px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  box-shadow: 1px 1px 3px #ccc, -1px -1px 3px #ccc;
+}
+
+.name {
+  font-size: 2rem;
+  font-family: Times New Roman, serif;
+}
+
+.name,
+.author {
+  text-transform: uppercase;
+}
+
+.headline {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.sub-headline {
+  font-weight: 100;
+  font-size: 1.5em;
+  font-style: italic;
+}
+
+.author {
+  font-weight: bold;
+}
+
+.headline,
+.sub-headline,
+.author {
+  align-self: flex-start;
+}
+
+.text {
+  text-indent: 20px;
+  line-height: 2em;
+}
+
+.text::first-letter {
+  font-weight: bold;
+  font-size: 2em;
+}
+
+** end of undefined **
+

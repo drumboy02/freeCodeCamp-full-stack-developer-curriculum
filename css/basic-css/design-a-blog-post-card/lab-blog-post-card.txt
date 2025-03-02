@@ -1,0 +1,71 @@
+** start of undefined **
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post Card</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="blog-post-card">
+        <img class="post-img" src="https://cdn.freecodecamp.org/curriculum/labs/cover-photo.jpg" width="320" alt="Hands typing on a laptop computer">
+        <div class="post-content">
+            <h2 class="post-title">From Code to Creation: Web Development Unveiled</h2>
+            <p class="post-excerpt">From initial sketches to fully functional websites, watch the transformation as ideas come to life through code.</p>
+            <a class="read-more" href="#">Read More</a>
+        </div>
+    </div>
+</body>
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+body {
+  background-image: linear-gradient(90deg, #222, #44f);
+}
+
+.blog-post-card {
+  background-color: white;
+  border: 1px solid #333;
+  border-radius: 20px;
+  width: 320px;
+  text-align: center;
+  margin: 2vh;
+}
+
+.post-img {
+  border-bottom: 4px solid #333;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+}
+
+.post-content {
+  padding: 0.4rem;
+}
+
+.post-title,
+.post-excerpt {
+  color: #444;
+  margin: 1rem;
+}
+
+.read-more {
+  color: #eee;
+  background-color: #333;
+  margin: 1rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.read-more:hover {
+  background-color: rgb(0, 0, 0, 0.6)
+}
+
+** end of undefined **
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Travel Agency Page</title>
+  </head>
+  <body>
+    <h1>Discover Greece</h1>
+    <p>Greece, the cradle of Western civilization, offers an incredible array of travel opportunities. From its ancient ruins and historic landmarks to its stunning islands and vibrant cities, Greece captivates every traveler with its timeless charm and allure.</p>
+    <h2>Packages</h2>
+    <p>We offer a variety of travel packages tailored to suit your preferences and interests, whether you're looking for a romantic escape, an adventurous journey, or a cultural exploration.</p>
+    <ul>
+      <li>
+        <a href="https://www.freecodecamp.org/learn" target="_blank">Group Travels</a>
+      </li>
+      <li>
+        <a href="https://www.freecodecamp.org/learn" target="_blank">Private Tours</a>
+      </li>
+    </ul>
+    <h2>Top Itineraries</h2>
+    <figure>
+      <a href="https://www.freecodecamp.org/learn" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Erechtheum_Acropolis_Athens.jpg" height="250" width="350" alt="The Erechtheum, western side, Acropolis, Athens, Greece.">
+      </a>
+      <figcaption>The Erechtheum, western side, Acropolis, Athens, Greece.</figcaption>
+    </figure>
+    <figure>
+      <a href="https://www.freecodecamp.org/learn" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Coast_line_Eretria_Euboea_Greece.jpg" height="250" width="350" alt="La côte au Nord d'Erétrie, Eubée, Grèce.">
+      </a>
+      <figcaption>La côte au Nord d'Erétrie, Eubée, Grèce.</figcaption>
+    </figure>
+    <figure>
+      <a href="https://www.freecodecamp.org/learn" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Temple_Athena_Lindos_Rhodes.jpg" height="250" width="350" alt="A part of the restorated remains of the doric portico (hellenistic era) of the temple of Athena Lindia, Acropolis of Lindos, Island of Rhodes, Greece.">
+      </a>
+      <figcaption>A part of the restorated remains of the doric portico (hellenistic era) of the temple of Athena Lindia, Acropolis of Lindos, Island of Rhodes, Greece.</figcaption>
+    </figure>
+  </body>
+</html>

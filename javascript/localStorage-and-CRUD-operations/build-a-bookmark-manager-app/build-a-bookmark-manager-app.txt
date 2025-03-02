@@ -1,0 +1,289 @@
+** start of undefined **
+
+const mainSection = document.getElementById("main-section");
+const formSection = document.getElementById("form-section");
+const bookmarkListSection = document.getElementById("bookmark-list-section");
+const categoryName = document.querySelector(".category-name");
+
+const addBookmarkBtn = document.getElementById("add-bookmark-button");
+const viewCategoryBtn = document.getElementById("view-category-button");
+
+const closeFormBtn = document.getElementById("close-form-button");
+const addBookmarkBtnForm = document.getElementById("add-bookmark-button-form");
+
+const closeListBtn = document.getElementById("close-list-button");
+const deleteBookmarkBtn = document.getElementById("delete-bookmark-button");
+
+addBookmarkBtn.addEventListener("click", () => {
+  const category = document.getElementById("category-dropdown").value;
+  categoryName.innerText = category;
+  displayOrCloseForm();
+});
+
+addBookmarkBtnForm.addEventListener("click", () => {
+  const name = formSection.querySelector("#name").value;
+  const category = categoryName.innerText;
+  const url = formSection.querySelector("#url").value;
+  const bookmarks = getBookmarks();
+  const bookmark = {
+    name: name,
+    category: category,
+    url: url,
+  };
+  
+  bookmarks.push(bookmark);
+  localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+  formSection.querySelector("#name").value = '';
+  formSection.querySelector("#url").value = '';
+  displayOrCloseForm();
+})
+
+viewCategoryBtn.addEventListener("click", () => {
+  const category = document.getElementById("category-dropdown").value;
+  const categoryName = bookmarkListSection.querySelector(".category-name");
+  const categoryList = document.getElementById("category-list");
+  const bookmarks = getBookmarks().filter(bookmark => bookmark.category === category);
+  categoryName.innerText = category;
+  categoryList.innerHTML = '';
+
+  if (!bookmarks.length) {
+    categoryList.innerHTML = `<p>No Bookmarks Found</p>`;
+  } else {
+    bookmarks.forEach(bookmark => {
+      categoryList.innerHTML += 
+`<div>
+  <input type="radio" id="${bookmark.name}" value="${bookmark.name}" name="${bookmark.category}">
+  <label for="${bookmark.name}">
+    <a href="${bookmark.url}">${bookmark.name}</a>
+  </label>
+</div>`;
+    })
+  }
+  displayOrHideCategory();
+});
+
+deleteBookmarkBtn.addEventListener("click", () => {
+  const categoryList = document.getElementById("category-list");
+  const inputs = categoryList.querySelectorAll("input");
+  const bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+  inputs.forEach(input => {
+    if (input.checked) {
+      const index = bookmarks.findIndex(bookmark => bookmark.name === input.id && bookmark.category === input.name);
+      bookmarks.splice(index, 1);
+      localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+      input.parentElement.remove();
+    }
+  });
+  if (categoryList.innerHTML === '') {
+    categoryList.innerHTML = `<p>No Bookmarks Found</p>`;
+  }
+});
+
+closeFormBtn.addEventListener("click", () => {
+  displayOrCloseForm();
+});
+
+closeListBtn.addEventListener("click", () => {
+  displayOrHideCategory();
+});
+
+const getBookmarks = () => {
+  try {
+    const bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+    if (Array.isArray(bookmarks) && bookmarks.every(item => item.hasOwnProperty("name") && item.hasOwnProperty("category") && item.hasOwnProperty("url"))) {
+      return bookmarks;
+    }
+    return [];
+  } catch (error) {
+    return [];
+  }
+}
+
+const displayOrCloseForm = () => {
+  mainSection.classList.toggle("hidden");
+  formSection.classList.toggle("hidden");
+}
+
+const displayOrHideCategory = () => {
+  mainSection.classList.toggle("hidden");
+  bookmarkListSection.classList.toggle("hidden");
+}
+
+// localStorage.removeItem("bookmarks");
+
+** end of undefined **
+
+** start of undefined **
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.0">
+    <title>Bookmark Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main>
+        <section id="main-section">
+            <h1>Bookmark Manager</h1>
+            <div id="dropdown">
+                <label for="category-dropdown">Select a category:</label>
+                <select id="category-dropdown" name="options">
+                    <option value="news" selected>News</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="work">Work</option>
+                    <option value="miscellaneous">Miscellaneous</option>
+                </select>
+            </div>
+            <div id="buttons">
+                <button type="button" id="view-category-button">View Category</button>
+                <button type="button" id="add-bookmark-button">Add Bookmark</button>
+            </div>
+        </section>
+
+        <section id="form-section" class="hidden">
+            <form>
+                <h2 class="category-name"></h2>
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name">
+                </div>
+                <div>
+                    <label for="url">URL:</label>
+                    <input type="text" id="url">
+                </div>
+                <div>
+                    <button type="button" id="close-form-button">Go Back</button>
+                    <button type="button" id="add-bookmark-button-form">Add Bookmark</button>
+                </div>
+            </form>
+        </section>
+
+        <section id="bookmark-list-section" class="hidden">
+            <h2 class="category-name"></h2>
+            <div id="category-list">
+            </div>
+            <div>
+                <button type="button" id="close-list-button">Go Back</button>
+                <button type="button" id="delete-bookmark-button">Delete Bookmark</button>
+            </div>
+        </section>
+
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+:root {
+  --light-grey: #f5f6f7;
+  --dark-grey: #0a0a23;
+  --yellow: #f1be32;
+  --golden-yellow: #feac32;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+body {
+  background-color: var(--dark-grey);
+}
+
+.hidden {
+  display: none;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+select,
+input,
+label {
+  margin-left: 10px;
+}
+
+div {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.close-form-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+h1, h2 {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#category-list {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: var(--light-grey);
+  align-self: center;
+  width: 80%;
+  margin-top: 15px;
+  border-radius: 10px;
+}
+
+#category-list,
+h1,
+h2,
+label {
+  color: var(--light-grey);
+}
+
+#category-list p {
+  color: var(--dark-grey);
+}
+
+button {
+  cursor: pointer;
+  padding: 5px;
+  width: 100px;
+  margin: 10px;
+  color: var(--dark-grey);
+  background-color: var(--golden-yellow);
+  background-image: linear-gradient(#fecc4c, #ffac33);
+  border-color: var(--golden-yellow);
+  border-width: 3px;
+}
+
+button:hover {
+  background-image: linear-gradient(#ffcc4c, #f89808);
+}
+
+section {
+  margin-top: 60px;
+  border: 2px solid var(--golden-yellow);
+  width: fit-content;
+  border-radius: 10px;
+}
+
+** end of undefined **
+

@@ -1,0 +1,179 @@
+** start of undefined **
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Build a Set of Football Team Cards
+    </title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1 class="title">Team stats</h1>
+    <main>
+      <div class="team-stats">
+        <p>Team: <span id="team"></span></p>
+        <p>Year: <span id="year"></span></p>
+        <p>Head coach: <span id="head-coach"></span></p>
+      </div>
+      <label class="options-label" for="players">Filter Teammates:</label>
+      <select name="players" id="players">
+        <option value="all">All Players</option>
+        <option value="forward">Position Forward</option>
+        <option value="midfielder">Position Midfielder</option>
+        <option value="defender">Position Defender</option>
+        <option value="goalkeeper">Position Goalkeeper</option>
+      </select>
+      <div class="cards" id="player-cards"></div>
+    </main>
+    <footer>&copy; freeCodeCamp</footer>
+    <script src="./script.js"></script>
+  </body>
+</html>
+
+
+** end of undefined **
+
+** start of undefined **
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --dark-grey: #0a0a23;
+  --light-grey: #f5f6f7;
+  --white: #ffffff;
+  --black: #000;
+}
+
+body {
+  background-color: var(--dark-grey);
+  text-align: center;
+  padding: 10px;
+}
+
+.title,
+.options-label,
+.team-stats,
+footer {
+  color: var(--white);
+}
+
+.title {
+  margin: 1.3rem 0;
+}
+
+.team-stats {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  font-size: 1.3rem;
+  margin: 1.2rem 0;
+}
+
+.options-label {
+  font-size: 1.2rem;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.player-card {
+  background-color: var(--light-grey);
+  padding: 1.3rem;
+  margin: 1.2rem;
+  width: 300px;
+  border-radius: 15px;
+}
+
+@media (max-width: 768px) {
+  .team-stats {
+    flex-direction: column;
+  }
+}
+
+
+** end of undefined **
+
+** start of undefined **
+
+const headCoach = document.getElementById("head-coach");
+const team = document.getElementById("team");
+const year = document.getElementById("year");
+const playerCards = document.getElementById("player-cards");
+const options = document.getElementById("players");
+
+const footballTeam = {
+  team: "The Stars and Stripes",
+  year: 2025,
+  headCoach: "Mauricio Pochettino",
+  players: [
+    {name: "Patrick Agyemang", position: "forward", isCaptain: false},
+    {name: "Brian White", position: "forward", isCaptain: false},
+    {name: "Matko Miljevic", position: "forward", isCaptain: false},
+    {name: "Brian Gutiérrez", position: "forward", isCaptain: false},
+    {name: "Indiana Vassilev", position: "forward", isCaptain: false},
+    {name: "Caden Clark", position: "forward", isCaptain: false},
+    {name: "Benjamin Cremaschi", position: "midfielder", isCaptain: false},
+    {name: "Diego Luna", position: "midfielder", isCaptain: false},
+    {name: "Emeka Eneli", position: "midfielder", isCaptain: false},
+    {name: "Jack McGlynn", position: "midfielder", isCaptain: false},
+    {name: "Walker Zimmerman", position: "defender", isCaptain: false},
+    {name: "DeJuan Jones", position: "defender", isCaptain: false},
+    {name: "Miles Robinson", position: "defender", isCaptain: false},
+    {name: "Tim Ream", position: "defender", isCaptain: true},
+    {name: "Maximilian Arfsten", position: "defender", isCaptain: false},
+    {name: "Shaq Moore", position: "defender", isCaptain: false},
+    {name: "George Campbell", position: "defender", isCaptain: false},
+    {name: "Patrick Schulte", position: "goalkeeper", isCaptain: false},
+    {name: "Matt Freese", position: "goalkeeper", isCaptain: false},
+    {name: "Zack Steffen", position: "goalkeeper", isCaptain: false},
+    {name: "Drake Callender", position: "goalkeeper", isCaptain: false},
+  ],
+};
+
+headCoach.textContent = footballTeam.headCoach;
+team.textContent = footballTeam.team;
+year.textContent = footballTeam.year;
+
+function renderCards(array = footballTeam.players) {
+  playerCards.replaceChildren();
+  array.forEach((player) => {
+    const card = document.createElement('div');
+    card.classList.add("player-card");
+    const h2 = card.appendChild(document.createElement('h2'));
+    const p = card.appendChild(document.createElement('p'));
+    h2.textContent = player.isCaptain
+    ? `(Captain) ${player.name}`
+    : player.name;
+    p.textContent = `Position: ${player.position}`;
+    playerCards.appendChild(card);
+  });
+};
+
+options.addEventListener('change', (event) => {
+  let option = event.target.value;
+  if (option === "all") {
+    renderCards();
+  } else {
+    let filteredPlayers = footballTeam.players.filter(player => player.position === option);
+    renderCards(filteredPlayers);
+  }
+});
+
+renderCards();
+
+** end of undefined **
+

@@ -1,0 +1,80 @@
+* {
+  font-size: 16px;
+}
+
+body {
+  background: #eee;
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#user-inputs {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+button {
+  color: #f00;
+}
+
+#forecast {
+  margin: 1rem;
+  display: grid;
+  grid-template-areas: 
+  "location location"
+  "maintemp maintemp"
+  "icon weathermain"
+  "humidity feelslike"
+  "wind gust";
+  gap: 10px 1rem;
+  width: 400px;
+}
+
+#forecast * {
+  font-size: 20px;
+}
+
+#location {
+  grid-area: location;
+  place-self: center;
+  color: #00f;
+  font-weight: bold;
+}
+
+#main-temperature {
+  grid-area: maintemp;
+  place-self: center;
+}
+
+#weather-main {
+  grid-area: weathermain;
+  align-self: center;
+}
+
+#weather-icon {
+  grid-area: icon;
+  place-self: end;
+}
+
+#humidity {
+  grid-area: humidity;
+  place-self: end;
+}
+
+#feels-like {
+  grid-area: feelslike;
+}
+
+#wind {
+  grid-area: wind;
+  place-self: end;
+}
+
+#wind-gust {
+  grid-area: gust;
+}

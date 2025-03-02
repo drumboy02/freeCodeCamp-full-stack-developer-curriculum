@@ -1,0 +1,92 @@
+:root {
+  --primary: hsl(90, 75%, 50%);
+  --secondary: hsl(30, 75%, 50%);
+  --tertiary: hsl(193, 75%, 50%);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  font-family: Georgia;
+  background-image: linear-gradient(to bottom, var(--primary), var(--secondary));
+  background-attachment: fixed;
+  
+}
+
+.magazine-cover {
+  display: grid;
+  grid-template-areas: 
+  "title title title"
+  "feature-article feature-article cover-image"
+  "small-article1 small-article2 cover-image";
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto repeat(2, 1fr);
+  gap: 0.5em;
+  width: 90vw;
+  height: 97.5vh;
+}
+
+.magazine-cover > :nth-child(odd) {
+  border: 10px solid;
+} 
+
+.magazine-cover > :nth-child(even) {
+  border: 10px double;
+}
+
+.title {
+  grid-area: title;
+  background-color: var(--secondary);
+}
+
+.feature-article {
+  grid-area: feature-article;
+  background-color: var(--tertiary);
+  padding: 0 4rem;
+}
+
+.cover-image {
+  grid-area: cover-image;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/f/f2/Official_Opening_of_UFO_Landing_Pad%2C_St._Paul%2C_Alberta%2C_1967_02.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.small-article1 {
+  grid-area: small-article1;
+  background-color: var(--secondary);
+}
+
+.small-article2 {
+  grid-area: small-article2;
+  background-color: var(--secondary);
+}
+
+h1 {
+  font-size: 2.5rem;
+  text-align: center;
+  color: var(--tertiary);
+  text-shadow: -3px 2px #000; 
+}
+
+h2 {
+  text-align: center;
+}
+
+h3 {
+  font-size: 1rem;
+  font-style: italic;
+}
+
+p {
+  text-indent: 1.5rem;
+}
+
+header, section {
+  padding: 0 2rem;
+}
+
+.title > h3 {
+  text-align: center;
+}
