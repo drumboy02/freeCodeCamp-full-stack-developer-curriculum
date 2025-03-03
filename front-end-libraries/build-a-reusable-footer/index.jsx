@@ -3,21 +3,22 @@ export const Footer = () => {
     <>
       <footer className="footer">
         <ul>
-          <li>item1</li>
-          <li>item2</li>
+          <li>Dashboard</li>
+          <li>Services</li>
         </ul>
         <ul>
-          <li>item1</li>
-          <li>item2</li>
+          <li>Watch Videos</li>
+          <li>Discord</li>
         </ul>
         <ul>
-          <li>item1</li>
-          <li>item2</li>
+          <li>Privacy Policy</li>
+          <li>Terms & Conditions</li>
         </ul>
-        <p>© 2025</p>
-        <a href="#">link1</a>
-        <a href="#">link2</a>
-        <a href="#">link3</a>
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Tiktok</a>
+        <p></p>
+        <p>© 2025 All Rights Reserved</p>
       </footer>
     </>
   )
