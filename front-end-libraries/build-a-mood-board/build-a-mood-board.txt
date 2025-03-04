@@ -1,0 +1,148 @@
+** start of undefined **
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mood Board</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script
+      data-plugins="transform-modules-umd"
+      type="text/babel"
+      src="index.jsx"
+    ></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script
+      data-plugins="transform-modules-umd"
+      type="text/babel"
+      data-presets="react"
+      data-type="module"
+    >
+      import { MoodBoard } from './index.jsx';
+      ReactDOM.createRoot(document.getElementById('root')).render(
+        <MoodBoard />
+      );
+    </script>
+  </body>
+</html>
+
+** end of undefined **
+
+** start of undefined **
+
+export function MoodBoardItem({ color, image, description }) {
+  return (
+    <div className="mood-board-item"
+      style={{
+        backgroundColor: color
+      }}
+    >
+      <img className="mood-board-image"
+        src={image}
+      />
+      <h3 className="mood-board-text">
+        {description}
+      </h3>
+    </div>
+  )
+}
+
+export const MoodBoard = () => {
+  return (
+    <div>
+      <h1 className="mood-board-heading">
+        Destination Mood Board
+      </h1>
+      <div className="mood-board">
+        <MoodBoardItem
+          color="hsl(220, 100%, 35%)"
+          image="https://upload.wikimedia.org/wikipedia/commons/3/3c/Neuschwanstein_Castle_2024-02.jpg"
+          description="Neuschwanstein Castle"
+        />
+        <MoodBoardItem
+          color="hsl(155, 100%, 35%)"
+          image="https://upload.wikimedia.org/wikipedia/commons/f/f0/2020_08_Bojnice_castle_1.jpg"
+          description="Bojnice castle"
+        />
+        <MoodBoardItem
+          color="hsl(180, 100%, 35%)"
+          image="https://upload.wikimedia.org/wikipedia/commons/d/db/Chiba_Castle%2C_Chiba_Prefecture%3B_October_2016_%2812%29.jpg"
+          description="Chiba Castle"
+        />
+        <MoodBoardItem
+          color="hsl(40, 100%, 35%)"
+          image="https://upload.wikimedia.org/wikipedia/commons/c/c7/Cardiff_Castle_2.jpg"
+          description="Cardiff Castle"
+        />
+        <MoodBoardItem
+          color="hsl(85, 100%, 85%)"
+          image="https://upload.wikimedia.org/wikipedia/commons/4/49/Himeji_castle_q.jpg"
+          description="Himeji castle"
+        />
+        <MoodBoardItem
+          color="hsl(40, 100%, 5%)"
+          image="https://upload.wikimedia.org/wikipedia/commons/b/b0/Bodiam_Castle_%28192760813%29.jpg"
+          description="Bodiam Castle"
+        />
+      </div>
+    </div>
+  )
+}
+
+** end of undefined **
+
+** start of undefined **
+
+body {
+  background-color: #ffffcc;
+}
+
+.mood-board-heading {
+  text-align: center;
+  font-size: 2.5em;
+  color: #333;
+  margin-top: 20px;
+}
+
+.mood-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.mood-board-item {
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  height: 250px;
+}
+
+.mood-board-image {
+  border-radius: 5px;
+  width: 180px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.mood-board-text {
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+
+** end of undefined **
+

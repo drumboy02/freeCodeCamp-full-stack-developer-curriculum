@@ -1,0 +1,12 @@
+*create react project*
+	npm create vite@latest my-react-app -- --template react
+
+*install dependencies*
+	cd my-react-app
+	npm install
+
+*run project*
+	npm run dev
+
+*open browser*
+	http://localhost:5173/
